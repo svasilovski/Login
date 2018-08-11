@@ -26,11 +26,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) mensaje:(NSString *) message :(NSString *) title{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
+                                                    message:message
+                                                    preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK"
+                                            style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 - (IBAction)login:(id)sender {
-    if([_txtUser.text  isEqual: @"educacion"] && [_txtPasswd isEqual:@"password"]){
-        
+    if([_txtUser.text isEqualToString:@"educacion"] && [_txtPasswd.text isEqualToString:@"password"]){
+        [self mensaje:@"User and password correct." :@"Ok"];
     }else{
-        
+        [self mensaje:@"User or password incorrect." :@"Error"];
     }
 }
 
